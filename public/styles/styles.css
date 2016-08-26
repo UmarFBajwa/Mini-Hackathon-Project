@@ -102,3 +102,7 @@ body {
   padding: 20px;
   margin: auto;
 }
+
+svg {
+  margin-left: -12px;
+}
