@@ -3,11 +3,9 @@ function createEmotionChart(responseData){
 	var data = responseData.document_tone.tone_categories[1].tones;
 
 	var svg = d3.select("#tone")
-	.append("div")
 	.append("svg")
-	.classed("svg-container", true)
 	.append("g")
-	.classed("svg-content-responsive", true);
+
 
 	svg.append("g")
 	.attr("class", "slices");
@@ -18,7 +16,11 @@ function createEmotionChart(responseData){
 
 	var width = 290,
 	height = 200,
-	radius = Math.min(width, height) / 2;
+	radius = Math.min(width, height) / 2,
+	labelr = radius + 30;
+
+	console.log(radius * .6)
+	console.log(radius-100)
 
 	var pie = d3.layout.pie()
 	.sort(null)
@@ -139,7 +141,7 @@ function createEmotionChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? "start" : "end");
 				return [arc.centroid(d2), outerArc.centroid(d2), pos];
 			};
 		});
