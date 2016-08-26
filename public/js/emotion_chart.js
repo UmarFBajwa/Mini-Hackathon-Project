@@ -3,8 +3,11 @@ function createEmotionChart(responseData){
 	var data = responseData.document_tone.tone_categories[1].tones;
 
 	var svg = d3.select("#tone")
+	.append("div")
 	.append("svg")
+	.classed("svg-container", true)
 	.append("g")
+	.classed("svg-content-responsive", true);
 
 	svg.append("g")
 	.attr("class", "slices");
