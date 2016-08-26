@@ -81,6 +81,7 @@ function createToneChart(responseData){
 
 		text.enter()
 		.append("text")
+		.attr("class", "emotion-label")
 		.attr("dy", ".35em")
 		.text(function(d) {
 			return d.data.label;

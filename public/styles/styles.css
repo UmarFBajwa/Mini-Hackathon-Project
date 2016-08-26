@@ -106,3 +106,7 @@ body {
 svg {
   margin-left: -12px;
 }
+
+.emotion-label {
+  padding-bottom: 15px;
+}
