@@ -93,7 +93,7 @@ function createEmotionChart(responseData){
 		});
 
 		function midAngle(d){
-			return d.startAngle + (d.endAngle - d.startAngle)/2- Math.PI/10;
+			return d.startAngle + (d.endAngle - d.startAngle)/10;
 		}
 
 		text.transition().duration(1000)
@@ -114,7 +114,7 @@ function createEmotionChart(responseData){
 			this._current = interpolate(0);
 			return function(t) {
 				var d2 = interpolate(t);
-				return midAngle(d2) < Math.PI ? 1 : - 1;
+				return midAngle(d2) < Math.PI ? "start" : "end";
 			};
 		});
 
@@ -137,7 +137,7 @@ function createEmotionChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * 1.95 * (midAngle(d2) < Math.PI ? "start" : "end");
+				pos[0] = radius * .70 * (midAngle(d2) < Math.PI ? 1 : -1 );
 				return [arc.centroid(d2), outerArc.centroid(d2), pos];
 			};
 		});
