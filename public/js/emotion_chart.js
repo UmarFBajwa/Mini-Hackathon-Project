@@ -14,8 +14,8 @@ function createEmotionChart(responseData){
 	svg.append("g")
 	.attr("class", "lines");
 
-	var width = 290,
-	height = 200,
+	var width = 250,
+	height = 160,
 	radius = Math.min(width, height) / 2;
 
 	var pie = d3.layout.pie()
@@ -88,6 +88,7 @@ function createEmotionChart(responseData){
 		text.enter()
 		.append("text")
 		.attr("dy", ".35em")
+		.style("font-size", "smaller")
 		.text(function(d) {
 			return d.data.label;
 		});
