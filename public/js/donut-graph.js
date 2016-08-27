@@ -3,6 +3,7 @@ function createToneChart(responseData){
 	var data = responseData.document_tone.tone_categories[0].tones;
 
 	var svg = d3.select("#donut-chart")
+	.append("div:svg")
 	.append("svg")
 	.append("g")
 
@@ -24,12 +25,12 @@ function createToneChart(responseData){
 	});
 
 	var arc = d3.svg.arc()
-	.outerRadius(radius * 0.8)
+	.outerRadius(radius * 0.7)
 	.innerRadius(radius * 0.4);
 
 	var outerArc = d3.svg.arc()
-	.innerRadius(radius * 0.9)
-	.outerRadius(radius * 0.9);
+	.innerRadius(radius * 0.7)
+	.outerRadius(radius * 0.7);
 
 	svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -80,6 +81,7 @@ function createToneChart(responseData){
 
 		text.enter()
 		.append("text")
+		.attr("class", "emotion-label")
 		.attr("dy", ".35em")
 		.text(function(d) {
 			return d.data.label;
@@ -97,7 +99,7 @@ function createToneChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+				pos[0] = radius * .75 * (midAngle(d2) < Math.PI ? 1 : -1);
 				return "translate("+ pos +")";
 			};
 		})
@@ -107,7 +109,7 @@ function createToneChart(responseData){
 			this._current = interpolate(0);
 			return function(t) {
 				var d2 = interpolate(t);
-				return midAngle(d2) < Math.PI ? "start":"end";
+				return midAngle(d2) < Math.PI ? "start" : "end";
 			};
 		});
 
@@ -130,7 +132,7 @@ function createToneChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+				pos[0] = radius * 0.70 * (midAngle(d2) < Math.PI ? 1 : -1);
 				return [arc.centroid(d2), outerArc.centroid(d2), pos];
 			};
 		});

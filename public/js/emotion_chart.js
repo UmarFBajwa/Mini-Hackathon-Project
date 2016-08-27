@@ -6,6 +6,7 @@ function createEmotionChart(responseData){
 	.append("svg")
 	.append("g")
 
+
 	svg.append("g")
 	.attr("class", "slices");
 	svg.append("g")
@@ -24,12 +25,12 @@ function createEmotionChart(responseData){
 	});
 
 	var arc = d3.svg.arc()
-	.outerRadius(radius * 0.8)
+	.outerRadius(radius * 0.7)
 	.innerRadius(radius * 0.4);
 
 	var outerArc = d3.svg.arc()
-	.innerRadius(radius * 0.9)
-	.outerRadius(radius * 0.9);
+	.innerRadius(radius * 0.7)
+	.outerRadius(radius * 0.7);
 
 	svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
@@ -92,7 +93,7 @@ function createEmotionChart(responseData){
 		});
 
 		function midAngle(d){
-			return d.startAngle + (d.endAngle - d.startAngle)/2;
+			return d.startAngle + (d.endAngle - d.startAngle)/10;
 		}
 
 		text.transition().duration(1000)
@@ -103,7 +104,7 @@ function createEmotionChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+				pos[0] = radius * .75 * (midAngle(d2) < Math.PI ? 1 : -1);
 				return "translate("+ pos +")";
 			};
 		})
@@ -113,7 +114,7 @@ function createEmotionChart(responseData){
 			this._current = interpolate(0);
 			return function(t) {
 				var d2 = interpolate(t);
-				return midAngle(d2) < Math.PI ? "start":"end";
+				return midAngle(d2) < Math.PI ? "start" : "end";
 			};
 		});
 
@@ -136,7 +137,7 @@ function createEmotionChart(responseData){
 			return function(t) {
 				var d2 = interpolate(t);
 				var pos = outerArc.centroid(d2);
-				pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+				pos[0] = radius * .70 * (midAngle(d2) < Math.PI ? 1 : -1 );
 				return [arc.centroid(d2), outerArc.centroid(d2), pos];
 			};
 		});
