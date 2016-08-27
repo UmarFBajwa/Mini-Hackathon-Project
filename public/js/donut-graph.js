@@ -32,7 +32,7 @@ function createToneChart(responseData){
 	.innerRadius(radius * 0.7)
 	.outerRadius(radius * 0.7);
 
-	svg.attr("transform", "translate(" + width / 1.3 + "," + height / 2 + ")");
+	svg.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 	var key = function(d){ return d.data.label; };
 
